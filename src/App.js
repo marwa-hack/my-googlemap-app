@@ -1,25 +1,44 @@
 import logo from './logo.svg';
 import './App.css';
+import React from "react";
+import GoogleMapReact from 'google-map-react';
 
-function App() {
+const AnyReactComponent = ({ text }) => <div>{text}</div>;
+
+function Polygon(props) {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <button className="square" onClick={props.onClick}>
+      {props.value}
+    </button>
+  );
+}
+export default function App(){
+  const defaultProps = {
+    center: {
+      lat: 46.732400,
+      lng: -117.00020
+    },
+    zoom: 17
+  };
+
+  const handleApiLoaded = (map, maps) => {
+  // use map and maps objects
+  };
+
+  return (
+    // Important! Always set the container height explicitly
+    <div style={{ height: '100vh', width: '100%' }}>
+      <GoogleMapReact
+        bootstrapURLKeys={{ key: "" }}
+        defaultCenter={defaultProps.center}
+        defaultZoom={defaultProps.zoom}
+      >
+        <AnyReactComponent
+          lat={46.732413}
+          lng={-117.000244}
+          text="My Marker"
+        />
+      </GoogleMapReact>
     </div>
   );
 }
-
-export default App;
